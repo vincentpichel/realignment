@@ -15,13 +15,13 @@ Dim FR1 As Long
 fpath = "\\DHGSF05\finman\Interfaces\Leave Liabilities\2015-16\Master Templates for Realignment and Bump Up Process"
 'Set sh = Workbooks("" & Tdata & "").Sheets("Sheet1")
 
-With Workbooks("Test_Data.xlsm").Sheets("Sheet1")
+With Workbooks("Test_Data1.2.xlsm").Sheets("Sheet1")
     
     LastRowY = .Range("Y" & .Rows.Count).End(xlUp).Row
     
         'This opens up the Journal template so its ready to for data transfer
-        Workbooks.Open fpath & "\" & "Test_Journal.xls"
-        
+        'Workbooks.Open fpath & "\" & "Test_Journal.xls"
+        Workbooks.Open "\\DHGSF05\finman\Interfaces\Leave Liabilities\2015-16\Master Templates for Realignment and Bump Up Process\Test_Journal.xls"
         'This sets Variable "Tjournal" to Test_Journal.xls
         Tjounral = ActiveWorkbook.Name
         
