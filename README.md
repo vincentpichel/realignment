@@ -9,24 +9,28 @@ Tdata = ActiveWorkbook.Name
 Dim sh As Worksheet
 Dim LastRowC As Long
 Dim LastRowY As Long
-Dim FR1 As Long
+Dim fpath As String
+
 
 'Update File Path
-FPath = "C:\Documents and Settings\SENAGAPALLI.KARTHIK\My Documents\Excel Forum\Gti182"
+fpath = "\\DHGSF05\finman\Interfaces\Leave Liabilities\2015-16\Master Templates for Realignment and Bump Up Process"
 'Set sh = Workbooks("" & Tdata & "").Sheets("Sheet1")
+
 
 With Workbooks("Test_Data.xlsm").Sheets("Sheet1")
     
     LastRowY = .Range("Y" & .Rows.Count).End(xlUp).Row
     
         'This opens up the Journal template so its ready to for data transfer
-        Workbooks.Open FPath & "\" & "Test_Journal.xls"
+        Workbooks.Open fpath & "\" & "Test_Journal.xls"
         
         'This sets Variable "Tjournal" to Test_Journal.xls
         Tjounral = ActiveWorkbook.Name
+        Set shtSrc = Workbooks("Test_Journal.xls").Sheets("Entry")
         
-        
-     LastRowC = Workbooks("Test_Journal.xls").Sheets("Entry").Range("C" & .Rows.Count).End(xlUp).Row
+    
+      LastRowC = shtSrc.Cells(shtSrc.Rows.Count, "B").End(xlUp).Row
+
      
      Stat1 = LastRowY - 3
      Stat2 = LastRowC - 17
@@ -64,7 +68,7 @@ With Workbooks("Test_Data.xlsm").Sheets("Sheet1")
 End With
 
 
-        ActiveWorkbook.SaveAs Filename:=FPath & "\Bus " & .Range("C16") & "_" & .Range("M16") & "_" & Format(Now(), "mm_dd_yyyy hh mm AMPM") & ".xls", FileFormat:=xlExcel8
+        ActiveWorkbook.SaveAs Filename:=fpath & "\Bus __ Realignment Test" & "_" & "_" & Format(Now(), "mm_dd_yyyy hh mm AMPM") & ".xls", FileFormat:=xlExcel8
         ActiveWorkbook.Close False
         
         
@@ -72,4 +76,3 @@ Application.ScreenUpdating = True
 Application.DisplayAlerts = True
 
 End Sub
-
