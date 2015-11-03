@@ -9,13 +9,11 @@ Tdata = ActiveWorkbook.Name
 Dim sh As Worksheet
 Dim LastRowC As Long
 Dim LastRowY As Long
-Dim fpath As String
-
+Dim FR1 As Long
 
 'Update File Path
 fpath = "\\DHGSF05\finman\Interfaces\Leave Liabilities\2015-16\Master Templates for Realignment and Bump Up Process"
 'Set sh = Workbooks("" & Tdata & "").Sheets("Sheet1")
-
 
 With Workbooks("Test_Data.xlsm").Sheets("Sheet1")
     
@@ -26,11 +24,12 @@ With Workbooks("Test_Data.xlsm").Sheets("Sheet1")
         
         'This sets Variable "Tjournal" to Test_Journal.xls
         Tjounral = ActiveWorkbook.Name
+        
+        
         Set shtSrc = Workbooks("Test_Journal.xls").Sheets("Entry")
         
     
       LastRowC = shtSrc.Cells(shtSrc.Rows.Count, "B").End(xlUp).Row
-
      
      Stat1 = LastRowY - 3
      Stat2 = LastRowC - 17
@@ -68,7 +67,7 @@ With Workbooks("Test_Data.xlsm").Sheets("Sheet1")
 End With
 
 
-        ActiveWorkbook.SaveAs Filename:=fpath & "\Bus __ Realignment Test" & "_" & "_" & Format(Now(), "mm_dd_yyyy hh mm AMPM") & ".xls", FileFormat:=xlExcel8
+        'ActiveWorkbook.SaveAs Filename:=fpath & "\Bus " & .Range("C16") & "_" & .Range("M16") & "_" & Format(Now(), "mm_dd_yyyy hh mm AMPM") & ".xls", FileFormat:=xlExcel8
         ActiveWorkbook.Close False
         
         
@@ -76,3 +75,4 @@ Application.ScreenUpdating = True
 Application.DisplayAlerts = True
 
 End Sub
+
